@@ -30,7 +30,7 @@ VarificationSchema.methods.toJSON =  function() {
 
 VarificationSchema.methods.sendMail = function () {
     var mailDto = this;
-    var mailString = "http://localhost:4200/userverifivation/" + mailDto._id;
+    var mailString = "http://localhost:4200/#/userverifivation/" + mailDto._id;
     sendmail({
         from: 'aakash1147@gmail.com',
         to: mailDto.email,

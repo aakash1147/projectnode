@@ -3,7 +3,7 @@ const mongodb = require('./app/db/connection');
 
 var app = express();
 
-app.listen(5001, ()=> {
+app.listen(5000, ()=> {
     console.log("Server is running on port 5001")
 });
 
