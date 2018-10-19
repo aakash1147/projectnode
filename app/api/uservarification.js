@@ -36,7 +36,7 @@ var useVarificationActive = (req, res) => {
             if (err) return res.status(400).send({"Response": "Token is not valid"})
             userModel.findOne({_id: data.userid }, (err, user) => {
                 if (err) return res.status(400).send({"Response": "Unable to find user with this token"});
-                user.password = req.body.token;
+                user.password = req.body.password;
                 user.is_active = true;
                 user.save().then((user_data) => {
                     res.status(200).send(user_data);

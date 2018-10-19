@@ -108,18 +108,27 @@ UserSchema.statics.findByToken = function(token) {
 
 UserSchema.statics.findByCrediential = function (email, password) {
     // to find the user by crediential email id
+    console.log("email: ", email);
+    console.log("password: ", password);
     var user = this;
     return user.findOne({email}).then((user) => {
+        console.log(user);
         if(!user) {
             return Promise.reject({'Response': 'User with this email Not Found'});
         }
         return new Promise((resolve, reject) => {
             // to compare the user given password & the enycripted password present in the datebase
+            console.log("_________________");
+            console.log(user.password);
+
             bcrypt.compare(password, user.password, (err, res) => {
+                console.log(err);
+                console.log(res);
                 if(res) {
+                    console.log(res);
                     resolve(user);
                 } else {
-                    reject({'Response': "Incorrect password"});
+                    reject({'Response': 'Password Does Not Match'});
                 }
             })
         })
@@ -128,9 +137,12 @@ UserSchema.statics.findByCrediential = function (email, password) {
 
 UserSchema.pre('save', function(next) {
     var user = this;
+    console.log(user.password);
     if(user.isModified('password')) {
         // to check if password is modified than modified it encrypted password
         bcrypt.genSalt(10, (err, salt) => {
+            console.log("555555555555 password ___________")
+            console.log(user.password);
             bcrypt.hash(user.password, salt, (err, hash) => {
                 user.password = hash;
                 next();
