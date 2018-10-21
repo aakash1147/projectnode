@@ -12,7 +12,7 @@ module.exports = (app) => {
     );
     if (req.method === 'OPTIONS') {
         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-        return res.status(200).json({});
+        return res.status(200).json({'Response': 'Access Method Not Allowed'});
     }
     next();
   });

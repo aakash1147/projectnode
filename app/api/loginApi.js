@@ -3,8 +3,6 @@ const userModel = require('../models/userModel');
 
 var login = (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
-    console.log("____ Login________")
-    console.log(body);
     userModel.findByCrediential(body.email, body.password).then((user) => {
         res.status(200).send({
           "token":user.tokens[0].token,

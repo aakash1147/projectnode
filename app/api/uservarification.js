@@ -9,12 +9,11 @@ var varificationMail = (user) => {
         is_consumed: false,
     }
     var varification = new varificationMailModel(body);
-    console.log(varification);
     setTimeout(() => {
         varification.sendMail();
     }, 2000);
     varification.save().then((varg) => {
-        console.log(varg);
+      
     });
 }
 
@@ -27,7 +26,6 @@ var userverifivationToken = (req, res) => {
 }
 
 var useVarificationActive = (req, res) => {
-    console.log(req.body);
     var id = req.body.token;
     if (req.body.password != req.body.confirmPassword) {
         res.status(400).send({"Response": "Password & Confirm Password Does not match"})
